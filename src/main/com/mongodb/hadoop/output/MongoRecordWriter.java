@@ -40,7 +40,9 @@ public class MongoRecordWriter<K,V> extends RecordWriter<K, V> {
     Object toBSON( Object x ){
         if ( x == null )
             return null;
-        if ( x instanceof Text || x instanceof UTF8 )
+        if ( x instanceof String)
+            return x;
+        if ( x instanceof CharSequence || x instanceof Text || x instanceof UTF8 )
             return x.toString();
         if ( x instanceof Writable ) {
             if ( x instanceof AbstractMapWritable )
